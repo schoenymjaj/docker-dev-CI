@@ -2,5 +2,14 @@ sudo: required
 services:
     - docker
 script:
-    - docker build -t mannydesigns/node .
-    - docker images mannydesigns/node
+    - docker build -t mnsdesigns/node .
+    - docker images mnsdesigns/node
+
+before_deploy:
+    -docker login -u mnsbutterfly -p inthemiddle#11
+
+deploy:
+    provider: script
+    script: docker push mnsdesigns/node
+    on:
+        branch: master
